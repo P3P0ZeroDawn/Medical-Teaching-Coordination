@@ -5,20 +5,46 @@ import com.medicalteachingcoordination.Misc.Contador;
 import com.medicalteachingcoordination.Misc.RegistraAsistencia;
 import com.medicalteachingcoordination.Misc.Asistencia;
 
-public class Administrativo extends Usuario implements RegistraAsistencia{
+/**
+ * Clase instanciable que hereda de la clase Usuario e implementa la interfaz
+ * RegistrarAsistencia.
+ * Contiene el atributo clave que funciona como ID, metodo de la interfaz.
+ * 
+ * @version 1.0
+ * @author Pedro Enrique Sánchez Rodríguez
+ */
+public class Administrativo extends Usuario implements RegistraAsistencia {
     private String clave;
 
+    /**
+     * Constructor de la clase Administrativo, llama a super de la clase Usuario.
+     * 
+     * @param nombre     Nombre completo del usuario.
+     * @param usuario    Nombre de usuario para iniciar sesión.
+     * @param contrasena Contraseña del usuario.
+     * @param contador   Contador para generar la clave del Administrativo
+     */
     public Administrativo(String nombre, String usuario, char[] contrasena, Contador contador) {
         super(nombre, usuario, contrasena, "administrativo");
         clave = "administrativo" + contador.getContador();
         contador.incrementarContador();
     }
 
+    /**
+     * Metodo para obtener la clave del Administrativo.
+     * 
+     * @return Clave del Administrativo.
+     */
     public String getClave() {
         return clave;
     }
 
-    public Asistencia registrarAsistencia(){
+    /**
+     * Metodo para instanciar un objeto tipo Asistencia.
+     * 
+     * @return Objeto de tipo Asistencia.
+     */
+    public Asistencia registrarAsistencia() {
         return new Asistencia(this);
     }
 }

@@ -1,4 +1,5 @@
 package com.medicalteachingcoordination.Misc;
+import java.util.Arrays;
 /**
  * Clase abstracta que representa un usuario en el sistema de coordinación médica.
  * Contiene atributos y métodos comunes para todos los tipos de usuarios.
@@ -8,7 +9,7 @@ package com.medicalteachingcoordination.Misc;
 public abstract class Usuario {
     protected String nombre;
     protected String usuario;
-    protected String contrasena;
+    protected char[] contrasena;
     protected String tipo;
 
     /**
@@ -18,7 +19,7 @@ public abstract class Usuario {
      * @param contrasena Contraseña del usuario.
      * @param tipo Tipo de usuario ("estudiante" o "administrativo").
      */
-    public Usuario(String nombre, String usuario, String contrasena, String tipo) {
+    public Usuario(String nombre, String usuario, char[] contrasena, String tipo) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -43,7 +44,7 @@ public abstract class Usuario {
      * Método para obtener la contraseña del usuario.
      * @return Contraseña del usuario.
      */
-    public String getContrasena() {
+    public char[] getContrasena() {
         return contrasena;
     }
     /**
@@ -71,7 +72,7 @@ public abstract class Usuario {
      * Método para establecer la contraseña del usuario.
      * @param contrasena Contraseña del usuario.
      */
-    public void setContrasena(String contrasena) {
+    public void setContrasena(char[] contrasena) {
         this.contrasena = contrasena;
     }
     /**
@@ -87,8 +88,8 @@ public abstract class Usuario {
      * @param contrasena Contraseña del usuario.
      * @return true si las credenciales son correctas, false en caso contrario.
      */
-    public boolean iniciarSesion(String usuario, String contrasena) {
-        if (this.usuario.equals(usuario) && this.contrasena.equals(contrasena)) {
+    public boolean iniciarSesion(String usuario, char[] contrasena) {
+        if (this.usuario.equals(usuario) && Arrays.equals(this.contrasena, contrasena)) {
             return true;
         }
         return false;

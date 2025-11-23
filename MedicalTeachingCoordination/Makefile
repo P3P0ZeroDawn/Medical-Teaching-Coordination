@@ -20,6 +20,7 @@ help:
 	@echo "  make newinterface NAME=paquete/Interfaz  - Crea una nueva interfaz"
 	@echo "  make newtest NAME=paquete/Clase          - Crea un test JUnit 5"
 	@echo "  make new NAME=paquete/Clase              - Crea clase + test"
+	@echo "  make newview NAME=paquete/VistaNombre    - Crea una nueva vista JPanel"
 
 build:
 	mvn compile
@@ -130,3 +131,30 @@ endif
 # =============================
 
 new: newclass newtest
+
+# =============================
+# CREAR NUEVA VISTA (JPanel)
+# =============================
+
+newview:
+ifndef NAME
+	$(error Falta el nombre: use 'make newview NAME=paquete/VistaNombre')
+endif
+	@if [ -f "$(CLASS_FILE)" ]; then \
+		echo "La vista $(CLASS_NAME) ya existe en el paquete $(FULL_PACKAGE)."; \
+	else \
+		mkdir -p "$(CLASS_DIR)"; \
+		echo "package $(FULL_PACKAGE);" > $(CLASS_FILE); \
+		echo "" >> $(CLASS_FILE); \
+		echo "import javax.swing.*;" >> $(CLASS_FILE); \
+		echo "" >> $(CLASS_FILE); \
+		echo "public class $(CLASS_NAME) extends JPanel {" >> $(CLASS_FILE); \
+		echo "" >> $(CLASS_FILE); \
+		echo "    public $(CLASS_NAME)(MainFrame frame) {" >> $(CLASS_FILE); \
+		echo "        JButton btn = new JButton(\"Accion\");" >> $(CLASS_FILE); \
+		echo "        btn.addActionListener(e -> frame.mostrarVista(\"otraVista\"));" >> $(CLASS_FILE); \
+		echo "        add(btn);" >> $(CLASS_FILE); \
+		echo "    }" >> $(CLASS_FILE); \
+		echo "}" >> $(CLASS_FILE); \
+		echo "Vista creada: $(CLASS_FILE)"; \
+	fi

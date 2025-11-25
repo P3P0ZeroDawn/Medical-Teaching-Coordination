@@ -1,7 +1,7 @@
 package com.medicalteachingcoordination.Administrativo;
 
 import com.medicalteachingcoordination.Misc.Usuario;
-import com.medicalteachingcoordination.Misc.Contador;
+import com.medicalteachingcoordination.Misc.GenerarCodigo;
 import com.medicalteachingcoordination.Misc.RegistraAsistencia;
 import com.medicalteachingcoordination.Misc.Asistencia;
 
@@ -24,10 +24,9 @@ public class Administrativo extends Usuario implements RegistraAsistencia {
      * @param contrasena Contraseña del usuario.
      * @param contador   Contador para generar la clave del Administrativo
      */
-    public Administrativo(String nombre, String usuario, char[] contrasena, Contador contador) {
+    public Administrativo(String nombre, String usuario, char[] contrasena, GenerarCodigo generarCodigo) {
         super(nombre, usuario, contrasena, "administrativo");
-        clave = "administrativo" + contador.getContador();
-        contador.incrementarContador();
+        clave = generarCodigo.generarCodigo(usuario);
     }
 
     /**

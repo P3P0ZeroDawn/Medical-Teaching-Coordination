@@ -1,20 +1,18 @@
-package com.medicalteachingcoordination.com.medicalteachingcoordination.Misc;
+package com.medicalteachingcoordination.Misc;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
-
 import com.medicalteachingcoordination.Administrativo.Administrativo;
-import com.medicalteachingcoordination.Misc.Asistencia;
-import com.medicalteachingcoordination.Misc.Contador;
 
 public class AsistenciaTest {
     @Test
     void testConstructor() {
         char[] contrasena = { '1', '2' };
-        Contador cont = new Contador();
-        Administrativo administrativo = new Administrativo("Jose Lopes Lopes", "Jose", contrasena, cont);
+        GenerarCodigo genCodigoAdministrativos = new GenerarCodigo();
+        Administrativo administrativo = new Administrativo("Jose Lopes Lopes", "Jose", contrasena,
+                genCodigoAdministrativos);
         Asistencia obj = new Asistencia(administrativo);
         assertNotNull(obj);
     }
@@ -22,8 +20,9 @@ public class AsistenciaTest {
     @Test
     void testGetUsuario() {
         char[] contrasena = { '1', '2' };
-        Contador cont = new Contador();
-        Administrativo administrativo = new Administrativo("Jose Lopes Lopes", "Jose", contrasena, cont);
+        GenerarCodigo genCodigoAdministrativos = new GenerarCodigo();
+        Administrativo administrativo = new Administrativo("Jose Lopes Lopes", "Jose", contrasena,
+                genCodigoAdministrativos);
         Asistencia obj = new Asistencia(administrativo);
         assertEquals(obj.getUsuario(), administrativo);
     }
@@ -31,8 +30,9 @@ public class AsistenciaTest {
     @Test
     void testGetFecha() {
         char[] contrasena = { '1', '2' };
-        Contador cont = new Contador();
-        Administrativo administrativo = new Administrativo("Jose Lopes Lopes", "Jose", contrasena, cont);
+        GenerarCodigo genCodigoAdministrativos = new GenerarCodigo();
+        Administrativo administrativo = new Administrativo("Jose Lopes Lopes", "Jose", contrasena,
+                genCodigoAdministrativos);
         Asistencia obj = new Asistencia(administrativo);
         assertEquals(obj.getFecha(), LocalDate.now());
     }

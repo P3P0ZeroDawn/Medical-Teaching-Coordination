@@ -1,8 +1,7 @@
-package com.medicalteachingcoordination.com.medicalteachingcoordination.Misc;
+package com.medicalteachingcoordination.Misc;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import com.medicalteachingcoordination.Misc.Contador;
 
 public class ContadorTest {
     @Test

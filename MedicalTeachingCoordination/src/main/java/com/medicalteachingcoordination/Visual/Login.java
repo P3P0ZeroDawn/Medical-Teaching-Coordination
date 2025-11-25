@@ -10,7 +10,7 @@ public class Login extends JPanel {
 
     public Login(MainFrame frame, ArrayList<Usuario> usuarios) {
 
-         // Centrar el formulario en la pantalla
+        // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
 
         JPanel form = new JPanel();
@@ -30,8 +30,9 @@ public class Login extends JPanel {
         btn.setAlignmentX(CENTER_ALIGNMENT);
 
         btn.addActionListener( e -> {
-            if (autenticar(userField.getText(), passField.getPassword(), usuarios)) {
-                frame.mostrarVista("menu");
+            Usuario usuario = autenticar(userField.getText(), passField.getPassword(), usuarios);
+            if (usuario!=null) {
+                frame.mostrarVista("menu", usuario);
             } else {
                 JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos");
             }
@@ -58,12 +59,12 @@ public class Login extends JPanel {
     }
         
 
-    private boolean autenticar(String usuario, char[] contrasena, ArrayList<Usuario> usuarios) {
+    private Usuario autenticar(String usuario, char[] contrasena, ArrayList<Usuario> usuarios) {
         for (Usuario user : usuarios) {
                 if(user.iniciarSesion(usuario, contrasena)) {
-                    return true;
+                    return user;
             }
         }
-        return false;
+        return null;
     }
 }

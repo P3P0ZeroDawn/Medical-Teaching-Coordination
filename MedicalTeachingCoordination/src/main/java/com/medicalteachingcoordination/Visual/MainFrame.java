@@ -13,7 +13,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame(ArrayList<Usuario> usuarios) {
         setTitle("Mi aplicación");
-        setSize(500, 400);
+        setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -21,11 +21,11 @@ public class MainFrame extends JFrame {
 
         // agregar vistas
         cards.add(new Login(this, usuarios), "login");
-
+        cards.add(new Menu(this, usuarios.get(0)), "menu");
         add(cards);
     }
 
-    public void mostrarVista(String nombre) {
+    public void mostrarVista(String nombre, Usuario usuario) {
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
     }

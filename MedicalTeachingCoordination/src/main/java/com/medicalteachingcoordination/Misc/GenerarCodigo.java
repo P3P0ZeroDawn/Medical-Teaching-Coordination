@@ -1,7 +1,7 @@
 package com.medicalteachingcoordination.Misc;
 
 public class GenerarCodigo {
-    Contador contador;
+    private Contador contador;
 
     public GenerarCodigo() {
         this.contador = new Contador();

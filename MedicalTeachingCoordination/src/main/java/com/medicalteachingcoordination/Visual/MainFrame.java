@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
     private JPanel cards;
 
     public MainFrame(ArrayList<Usuario> usuarios) {
-        setTitle("Mi aplicación");
+        setTitle("Sistema de Coordinación de Enseñanza Médica");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -21,11 +21,16 @@ public class MainFrame extends JFrame {
 
         // agregar vistas
         cards.add(new Login(this, usuarios), "login");
-        cards.add(new Menu(this, usuarios.get(0)), "menu");
+        cards.add(new Menu(this, usuarios.get(0), usuarios), "menu");
         add(cards);
     }
 
     public void mostrarVista(String nombre, Usuario usuario) {
+        CardLayout cl = (CardLayout) cards.getLayout();
+        cl.show(cards, nombre);
+    }
+
+    public void mostrarVista(String nombre, ArrayList<Usuario> usuarios) {
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
     }

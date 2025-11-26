@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Curso {
     private String nombre;
-    private ArrayList<String> claveConstancia;
+    private String claveConstancia;
     private ArrayList<String> estudiantes;
 
-    public Curso(String nombreCurso) {
+    public Curso(String nombreCurso, String claveConstancia) {
         this.nombre = nombreCurso;
-        claveConstancia = new ArrayList<>();
+        this.claveConstancia = claveConstancia;
         estudiantes = new ArrayList<>();
     }
 
@@ -17,16 +17,12 @@ public class Curso {
         return nombre;
     }
 
-    public ArrayList<String> getClaveConstancia() {
+    public String getClaveConstancia() {
         return claveConstancia;
     }
 
     public ArrayList<String> getEstudiantes() {
         return estudiantes;
-    }
-
-    public void setClaveConstancia(ArrayList<String> claveConstancia) {
-        this.claveConstancia = claveConstancia;
     }
 
     public void setEstudiantes(ArrayList<String> estudiantes) {

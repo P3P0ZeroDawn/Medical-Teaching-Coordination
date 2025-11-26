@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class Menu extends JPanel {
 
-    public Menu(MainFrame frame, Usuario usuario) {
+    public Menu(MainFrame frame, Usuario usuario, ArrayList<Usuario> usuarios) {
         // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
 
@@ -24,7 +24,7 @@ public class Menu extends JPanel {
         left.weightx = 0;                // No se expande horizontalmente
         left.weighty = 1;                // Sí se estira verticalmente
         left.anchor = GridBagConstraints.NORTHWEST;
-        left.fill = GridBagConstraints.NONE;
+        left.fill = GridBagConstraints.VERTICAL;
 
         JPanel form = new JPanel();
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
@@ -44,20 +44,40 @@ public class Menu extends JPanel {
         form.add(userType);
         form.add(Box.createVerticalStrut(20));
 
+        // Tamaño uniforme para los botones del panel izquierdo
+        Dimension buttonSize = new Dimension(150, 30);
+
         if (getUserType(usuario).equals("Administrativo")) {
             JButton btnReporte = new JButton("Consultar reporte");
-            btnReporte.setSize(new Dimension(100, 30));
+            btnReporte.setPreferredSize(buttonSize);
+            btnReporte.setMaximumSize(buttonSize);
+            btnReporte.setMinimumSize(buttonSize);
             btnReporte.setAlignmentX(Component.LEFT_ALIGNMENT);
             form.add(btnReporte);
             form.add(Box.createVerticalStrut(15));
 
             JButton btnAgregarCurso = new JButton("Agregar curso");
-            btnAgregarCurso.setSize(new Dimension(100, 30));
+            btnAgregarCurso.setPreferredSize(buttonSize);
+            btnAgregarCurso.setMaximumSize(buttonSize);
+            btnAgregarCurso.setMinimumSize(buttonSize);
             btnAgregarCurso.setAlignmentX(Component.LEFT_ALIGNMENT);
             form.add(btnAgregarCurso);
             form.add(Box.createVerticalStrut(15));
         }
-        
+
+        // Empuja lo que viene después (el botón de logout) hacia el fondo
+        form.add(Box.createVerticalGlue());
+
+        JButton btnLogout = new JButton("Cerrar sesión");
+        btnLogout.setPreferredSize(buttonSize);
+        btnLogout.setMaximumSize(buttonSize);
+        btnLogout.setMinimumSize(buttonSize);
+        btnLogout.setAlignmentX(Component.LEFT_ALIGNMENT);
+        btnLogout.addActionListener(e -> {
+            frame.mostrarVista("login", usuarios);
+        });
+        form.add(btnLogout);
+        form.add(Box.createVerticalStrut(15));
 
         add(form, left);
 

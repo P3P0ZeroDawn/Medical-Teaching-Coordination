@@ -17,6 +17,9 @@ public class Login extends JPanel {
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
         form.setPreferredSize(new Dimension(300, 200));
 
+        JLabel mainLabel = new JLabel("Iniciar Sesión");
+        mainLabel.setFont(mainLabel.getFont().deriveFont(30.0f));
+
         // Campos
         JLabel userLabel = new JLabel("Usuario:");
         JTextField userField = new JTextField();
@@ -33,18 +36,24 @@ public class Login extends JPanel {
             Usuario usuario = autenticar(userField.getText(), passField.getPassword(), usuarios);
             if (usuario!=null) {
                 frame.mostrarVista("menu", usuario);
+                userField.setText("");
+                passField.setText("");
             } else {
                 JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos");
             }
         });
         
         // Alinear todos al centro
+        mainLabel.setAlignmentX(CENTER_ALIGNMENT);
         userLabel.setAlignmentX(CENTER_ALIGNMENT);
         userField.setAlignmentX(CENTER_ALIGNMENT);
         passLabel.setAlignmentX(CENTER_ALIGNMENT);
         passField.setAlignmentX(CENTER_ALIGNMENT);
 
         // Ensamblar UI con espacios
+        form.add(mainLabel);
+        form.add(Box.createVerticalStrut(20));
+
         form.add(userLabel);
         form.add(userField);
         form.add(Box.createVerticalStrut(10));

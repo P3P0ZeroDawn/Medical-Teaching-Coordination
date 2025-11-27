@@ -1,6 +1,5 @@
 package com.medicalteachingcoordination.Documentos;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.medicalteachingcoordination.Curso.GestionarConstancias;

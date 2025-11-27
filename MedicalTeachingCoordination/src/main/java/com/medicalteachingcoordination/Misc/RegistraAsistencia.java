@@ -12,5 +12,5 @@ public interface RegistraAsistencia {
      * 
      * @return un objeto de tipo Asistencia.
      */
-    public abstract Asistencia registrarAsistencia();
+    public abstract Asistencia registrarAsistencia(String info);
 }

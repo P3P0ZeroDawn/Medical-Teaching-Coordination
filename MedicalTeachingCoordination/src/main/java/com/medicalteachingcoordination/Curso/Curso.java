@@ -1,11 +1,12 @@
 package com.medicalteachingcoordination.Curso;
 
 import java.util.ArrayList;
+import com.medicalteachingcoordination.Estudiante.Estudiante;
 
 public class Curso {
     private String nombre;
     private String claveConstancia;
-    private ArrayList<String> estudiantes;
+    private ArrayList<Estudiante> estudiantes;
 
     public Curso(String nombreCurso, String claveConstancia) {
         this.nombre = nombreCurso;
@@ -21,11 +22,11 @@ public class Curso {
         return claveConstancia;
     }
 
-    public ArrayList<String> getEstudiantes() {
+    public ArrayList<Estudiante> getEstudiantes() {
         return estudiantes;
     }
 
-    public void setEstudiantes(ArrayList<String> estudiantes) {
+    public void setEstudiantes(ArrayList<Estudiante> estudiantes) {
         this.estudiantes = estudiantes;
     }
 }

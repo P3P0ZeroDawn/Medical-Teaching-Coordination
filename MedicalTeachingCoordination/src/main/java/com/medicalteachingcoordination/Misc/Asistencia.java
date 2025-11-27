@@ -14,15 +14,17 @@ import java.time.LocalDate;
 public class Asistencia {
     private Usuario usuario;
     private LocalDate fecha;
+    private String informacion;
 
     /**
      * Constructor de la clase Asistencia.
      * 
      * @param usuario objeto usuario que registra la asistencia.
      */
-    public Asistencia(Usuario usuario) {
+    public Asistencia(Usuario usuario, String informacion) {
         this.usuario = usuario;
         this.fecha = LocalDate.now();
+        this.informacion = informacion;
     }
 
     /**

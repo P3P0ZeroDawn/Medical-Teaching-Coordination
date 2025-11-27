@@ -24,9 +24,9 @@ public class Administrativo extends Usuario implements RegistraAsistencia {
      * @param contrasena Contraseña del usuario.
      * @param contador   Contador para generar la clave del Administrativo
      */
-    public Administrativo(String nombre, String usuario, char[] contrasena, GenerarCodigo generarCodigo) {
+    public Administrativo(String nombre, String usuario, char[] contrasena, String clave) {
         super(nombre, usuario, contrasena, "administrativo");
-        clave = generarCodigo.generarCodigo(usuario);
+        this.clave = clave;
     }
 
     /**
@@ -43,7 +43,7 @@ public class Administrativo extends Usuario implements RegistraAsistencia {
      * 
      * @return Objeto de tipo Asistencia.
      */
-    public Asistencia registrarAsistencia() {
-        return new Asistencia(this);
+    public Asistencia registrarAsistencia(String info) {
+        return new Asistencia(this, info);
     }
 }

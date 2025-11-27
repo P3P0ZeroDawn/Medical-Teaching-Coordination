@@ -53,6 +53,9 @@ public class Menu extends JPanel {
             btnReporte.setMaximumSize(buttonSize);
             btnReporte.setMinimumSize(buttonSize);
             btnReporte.setAlignmentX(Component.LEFT_ALIGNMENT);
+            btnReporte.addActionListener(e -> {
+                // Acción para consultar reporte
+            });
             form.add(btnReporte);
             form.add(Box.createVerticalStrut(15));
 

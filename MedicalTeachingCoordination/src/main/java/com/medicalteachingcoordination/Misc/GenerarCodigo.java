@@ -8,8 +8,8 @@ package com.medicalteachingcoordination.Misc;
 public class GenerarCodigo {
     private Contador contador;
 
-    public GenerarCodigo() {
-        this.contador = new Contador();
+    public GenerarCodigo(Contador contador) {
+        this.contador = contador;
     }
 
     public String generarCodigo(String objeto) {

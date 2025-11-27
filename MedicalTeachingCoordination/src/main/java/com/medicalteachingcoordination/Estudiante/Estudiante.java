@@ -8,11 +8,9 @@ import com.medicalteachingcoordination.Misc.GenerarCodigo;
 public class Estudiante extends Usuario implements RegistraAsistencia {
     private String matricula;
 
-    
-
-    public Estudiante(String nombre, String usuario, char[] contrasena, GenerarCodigo generarCodigo) {
+    public Estudiante(String nombre, String usuario, char[] contrasena, String matricula) {
         super(nombre, usuario, contrasena, "estudiante");
-        this.matricula = generarCodigo.generarCodigo(usuario);
+        this.matricula = matricula;
     }
 
     public String getmatricula(){
@@ -23,10 +21,8 @@ public class Estudiante extends Usuario implements RegistraAsistencia {
         this.matricula = matricula;
     }
 
-    public Asistencia registrarAsistencia(){
-        return new Asistencia(this);
+    public Asistencia registrarAsistencia(String curso) {
+        return new Asistencia(this, "Curso: " + curso);
     }
-
-
 }
 

@@ -4,11 +4,13 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import javax.swing.*;
-import com.medicalteachingcoordination.Misc.Usuario; 
+import com.medicalteachingcoordination.Misc.Usuario;
+import com.medicalteachingcoordination.Administrativo.Administrativo;
+import com.medicalteachingcoordination.Curso.Curso;
 
 public class Login extends JPanel {
 
-    public Login(MainFrame frame, ArrayList<Usuario> usuarios) {
+    public Login(MainFrame frame, ArrayList<Curso> cursos,ArrayList<Usuario> usuarios) {
 
         // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
@@ -35,9 +37,16 @@ public class Login extends JPanel {
         btn.addActionListener( e -> {
             Usuario usuario = autenticar(userField.getText(), passField.getPassword(), usuarios);
             if (usuario!=null) {
-                frame.mostrarVista("menu", usuario);
-                userField.setText("");
-                passField.setText("");
+                if (usuario instanceof Administrativo) {
+                    frame.mostrarVista("menu", usuario, usuarios);
+                    userField.setText("");
+                    passField.setText("");
+                }
+                else{
+                    frame.mostrarVista("cursos", cursos, usuario, usuarios);
+                    userField.setText("");
+                    passField.setText(""); 
+                } 
             } else {
                 JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos");
             }

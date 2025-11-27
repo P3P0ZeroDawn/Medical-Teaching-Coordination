@@ -1,7 +1,6 @@
 package com.medicalteachingcoordination.Administrativo;
 
 import com.medicalteachingcoordination.Misc.Usuario;
-import com.medicalteachingcoordination.Misc.GenerarCodigo;
 import com.medicalteachingcoordination.Misc.RegistraAsistencia;
 import com.medicalteachingcoordination.Misc.Asistencia;
 

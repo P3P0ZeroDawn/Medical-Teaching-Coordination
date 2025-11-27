@@ -14,16 +14,16 @@ import java.util.ArrayList;
 public class MainFrame extends JFrame {
 
     private JPanel cards;
+    private Contador contadorUsuarios;
 
-    public MainFrame
-    (
-        ArrayList<Usuario> usuarios,
-        ArrayList<Asistencia> asistencias,
-        ArrayList<Curso> cursos,
-        ArrayList<GestionarConstancias> constancias,
-        Contador contadorUsuarios
-    ) 
-        {
+    public MainFrame(
+            ArrayList<Usuario> usuarios,
+            ArrayList<Asistencia> asistencias,
+            ArrayList<Curso> cursos,
+            ArrayList<GestionarConstancias> constancias,
+            Contador contadorUsuarios) {
+        this.contadorUsuarios = contadorUsuarios;
+
         setTitle("Sistema de Coordinación de Enseñanza Médica");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,30 +38,32 @@ public class MainFrame extends JFrame {
 
         add(cards);
     }
-    //menu administrativo
-    public void mostrarVista(String nombre, Usuario usuario, ArrayList<Usuario> usuarios) {
-        this.cards.add(new Menu(this, usuario, usuarios), "menu");
+
+    // menu administrativo
+    public void mostrarVista(String nombre, Usuario usuario, ArrayList<Usuario> usuarios, ArrayList<Curso> cursos) {
+        this.cards.add(new Menu(this, usuario, usuarios, contadorUsuarios, cursos), "menu");
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
     }
-    //login
+
+    // login
     public void mostrarVista(String nombre, ArrayList<Usuario> usuarios) {
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
     }
-    //cursos
+
+    // cursos
     public void mostrarVista(String nombre, ArrayList<Curso> cursos, Usuario usuario, ArrayList<Usuario> usuarios) {
         this.cards.add(new Cursos(this, cursos, usuario, usuarios), "cursos");
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
     }
-    //curso especifico
-    public void mostrarVista(String nombre, Curso curso, Usuario usuario, ArrayList<Usuario> usuarios, ArrayList<Curso> cursos) {
+
+    // curso especifico
+    public void mostrarVista(String nombre, Curso curso, Usuario usuario, ArrayList<Usuario> usuarios,
+            ArrayList<Curso> cursos) {
         this.cards.add(new CursoEspecifico(this, curso, usuario, usuarios, cursos), "cursoEspecifico");
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
     }
 }
-
-    
-        

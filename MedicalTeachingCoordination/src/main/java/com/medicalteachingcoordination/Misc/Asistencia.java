@@ -44,4 +44,8 @@ public class Asistencia {
     public LocalDate getFecha() {
         return this.fecha;
     }
+
+    public String getInformacion() {
+        return informacion;
+    }
 }

@@ -10,7 +10,7 @@ import com.medicalteachingcoordination.Curso.Curso;
 
 public class Login extends JPanel {
 
-    public Login(MainFrame frame, ArrayList<Curso> cursos,ArrayList<Usuario> usuarios) {
+    public Login(MainFrame frame, ArrayList<Curso> cursos, ArrayList<Usuario> usuarios) {
 
         // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
@@ -34,24 +34,23 @@ public class Login extends JPanel {
         JButton btn = new JButton("Entrar");
         btn.setAlignmentX(CENTER_ALIGNMENT);
 
-        btn.addActionListener( e -> {
+        btn.addActionListener(e -> {
             Usuario usuario = autenticar(userField.getText(), passField.getPassword(), usuarios);
-            if (usuario!=null) {
+            if (usuario != null) {
                 if (usuario instanceof Administrativo) {
-                    frame.mostrarVista("menu", usuario, usuarios);
+                    frame.mostrarVista("menu", usuario, usuarios, cursos);
+                    userField.setText("");
+                    passField.setText("");
+                } else {
+                    frame.mostrarVista("cursos", cursos, usuario, usuarios);
                     userField.setText("");
                     passField.setText("");
                 }
-                else{
-                    frame.mostrarVista("cursos", cursos, usuario, usuarios);
-                    userField.setText("");
-                    passField.setText(""); 
-                } 
             } else {
                 JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos");
             }
         });
-        
+
         // Alinear todos al centro
         mainLabel.setAlignmentX(CENTER_ALIGNMENT);
         userLabel.setAlignmentX(CENTER_ALIGNMENT);
@@ -75,12 +74,11 @@ public class Login extends JPanel {
 
         add(form);
     }
-        
 
     private Usuario autenticar(String usuario, char[] contrasena, ArrayList<Usuario> usuarios) {
         for (Usuario user : usuarios) {
-                if(user.iniciarSesion(usuario, contrasena)) {
-                    return user;
+            if (user.iniciarSesion(usuario, contrasena)) {
+                return user;
             }
         }
         return null;

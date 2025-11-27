@@ -1,11 +1,14 @@
 package com.medicalteachingcoordination.Documentos;
 
+import com.medicalteachingcoordination.Estudiante.Estudiante;
+import com.medicalteachingcoordination.Curso.Curso;
+
 public class Constancia {
     private String clave;
-    private String estudiante;
-    private String curso;
+    private Estudiante estudiante;
+    private Curso curso;
 
-    public Constancia(String clave, String estudiante, String curso) {
+    public Constancia(String clave, Estudiante estudiante, Curso curso) {
         this.clave = clave;
         this.estudiante = estudiante;
         this.curso = curso;
@@ -15,11 +18,11 @@ public class Constancia {
         return clave;
     }
 
-    public String getEstudiante() {
+    public Estudiante getEstudiante() {
         return estudiante;
     }
 
-    public String getCurso() {
+    public Curso getCurso() {
         return curso;
     }
 }

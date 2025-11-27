@@ -15,9 +15,10 @@ public class GestionarConstancias {
     }
 
     public void agregarConstanciaPorValidar(Constancia constancia) {
-        if (!constanciasPorValidar.contains(constancia) && !constanciasValidadas.contains(constancia) && curso.getClaveConstancia().equals(constancia.getClave())){
+        if (!constanciasPorValidar.contains(constancia) && !constanciasValidadas.contains(constancia)
+                && curso.getClaveConstancia().equals(constancia.getClave())) {
             constanciasPorValidar.add(constancia);
-        }     
+        }
     }
 
     public void agregarConstanciaValidada(Constancia constancia) {
@@ -25,5 +26,17 @@ public class GestionarConstancias {
             constanciasPorValidar.remove(constancia);
             constanciasValidadas.add(constancia);
         }
+    }
+
+    public Curso getCurso() {
+        return this.curso;
+    }
+
+    public ArrayList<Constancia> getConstanciasPorValidar() {
+        return constanciasPorValidar;
+    }
+
+    public ArrayList<Constancia> getConstanciasValidadas() {
+        return constanciasValidadas;
     }
 }

@@ -1,6 +1,9 @@
 package com.medicalteachingcoordination.Visual;
+
 import com.medicalteachingcoordination.Administrativo.Administrativo;
+import com.medicalteachingcoordination.Curso.Curso;
 import com.medicalteachingcoordination.Misc.Usuario;
+import com.medicalteachingcoordination.Misc.Contador;
 
 import javax.swing.*;
 
@@ -13,16 +16,17 @@ import javax.swing.*;
 
 public class Menu extends JPanel {
 
-    public Menu(MainFrame frame, Usuario usuario, ArrayList<Usuario> usuarios) {
+    public Menu(MainFrame frame, Usuario usuario, ArrayList<Usuario> usuarios, Contador contadorUsuarios,
+            ArrayList<Curso> cursos) {
         // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
 
         // ======= Panel izquierda =======
         GridBagConstraints left = new GridBagConstraints();
-        left.gridx = 0;                  // Columna 0
-        left.gridy = 0;                  // Fila 0
-        left.weightx = 0;                // No se expande horizontalmente
-        left.weighty = 1;                // Sí se estira verticalmente
+        left.gridx = 0; // Columna 0
+        left.gridy = 0; // Fila 0
+        left.weightx = 0; // No se expande horizontalmente
+        left.weighty = 1; // Sí se estira verticalmente
         left.anchor = GridBagConstraints.NORTHWEST;
         left.fill = GridBagConstraints.VERTICAL;
 
@@ -84,9 +88,11 @@ public class Menu extends JPanel {
 
         add(form, left);
 
-        /* ============================
-           SEPARADOR VERTICAL
-           ============================ */
+        /*
+         * ============================
+         * SEPARADOR VERTICAL
+         * ============================
+         */
         JSeparator separator = new JSeparator(SwingConstants.VERTICAL);
         separator.setPreferredSize(new Dimension(5, 1)); // ancho 5px aprox
 
@@ -106,10 +112,10 @@ public class Menu extends JPanel {
 
         // Config de GridBag para la derecha
         GridBagConstraints right = new GridBagConstraints();
-        right.gridx = 2;                // Columna 1
-        right.gridy = 0;                // Fila 0
-        right.weightx = 1;              // Se expande horizontalmente
-        right.weighty = 1;              // Se expande verticalmente
+        right.gridx = 2; // Columna 1
+        right.gridy = 0; // Fila 0
+        right.weightx = 1; // Se expande horizontalmente
+        right.weighty = 1; // Se expande verticalmente
         right.anchor = GridBagConstraints.NORTHWEST;
         right.fill = GridBagConstraints.BOTH;
 

@@ -62,7 +62,7 @@ public class CursoEspecifico extends JPanel {
         btnBack.setMinimumSize(buttonSize);
         btnBack.setAlignmentX(CENTER_ALIGNMENT);
         btnBack.addActionListener(e -> {
-            frame.mostrarVista("cursos");
+            frame.mostrarVista("cursos", contenedor);
         });
         form.add(btnBack);
         form.add(Box.createVerticalStrut(15));

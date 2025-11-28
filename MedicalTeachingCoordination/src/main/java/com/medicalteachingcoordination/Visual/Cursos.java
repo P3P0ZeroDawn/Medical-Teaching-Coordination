@@ -66,7 +66,7 @@ public class Cursos extends JPanel {
                 form.add(Box.createVerticalStrut(10));
                 btnCurso.addActionListener(e -> {
                     contenedor.setCursoEspecifico(curso);
-                    frame.mostrarVista("cursoEspecifico");
+                    frame.mostrarVista("cursoEspecifico", contenedor);
                 });
             }
         }
@@ -83,7 +83,7 @@ public class Cursos extends JPanel {
         btnLogout.setAlignmentX(CENTER_ALIGNMENT);
         btnLogout.setAlignmentY(BOTTOM_ALIGNMENT);
         btnLogout.addActionListener(e -> {
-            frame.mostrarVista("login");
+            frame.mostrarVista("login", contenedor);
         });
         form.add(btnLogout);
         form.add(Box.createVerticalStrut(15));

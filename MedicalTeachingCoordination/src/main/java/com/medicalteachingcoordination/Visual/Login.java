@@ -39,11 +39,11 @@ public class Login extends JPanel {
             if (usuario != null) {
                 contenedor.setUsuarioActual(usuario);
                 if (usuario instanceof Administrativo) {
-                    frame.mostrarVista("menu");
+                    frame.mostrarVista("menu", contenedor);
                     userField.setText("");
                     passField.setText("");
                 } else {
-                    frame.mostrarVista("cursos");
+                    frame.mostrarVista("cursos", contenedor);
                     userField.setText("");
                     passField.setText("");
                 }

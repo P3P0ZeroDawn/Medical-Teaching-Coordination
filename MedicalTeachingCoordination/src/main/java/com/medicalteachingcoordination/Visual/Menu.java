@@ -2,10 +2,6 @@ package com.medicalteachingcoordination.Visual;
 
 import com.medicalteachingcoordination.Administrativo.*;
 import com.medicalteachingcoordination.Curso.Curso;
-import com.medicalteachingcoordination.Curso.GestionarConstancias;
-import com.medicalteachingcoordination.Misc.Usuario;
-import com.medicalteachingcoordination.Misc.Asistencia;
-import com.medicalteachingcoordination.Misc.Contador;
 
 import javax.swing.*;
 
@@ -13,7 +9,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.util.ArrayList;
 
 public class Menu extends JPanel {
 
@@ -81,7 +76,7 @@ public class Menu extends JPanel {
         btnLogout.setMinimumSize(buttonSize);
         btnLogout.setAlignmentX(Component.LEFT_ALIGNMENT);
         btnLogout.addActionListener(e -> {
-            frame.mostrarVista("login");
+            frame.mostrarVista("login", contenedor);
         });
         form.add(btnLogout);
         form.add(Box.createVerticalStrut(15));
@@ -106,7 +101,18 @@ public class Menu extends JPanel {
 
         // ======= Panel derecha =======
         JPanel panelDerecha = new JPanel();
-        panelDerecha.add(new JLabel("Aquí va la info de la derecha"));
+        JLabel listaCursosLabel = new JLabel("Lista de Cursos");
+        String cursos = "";
+        if (contenedor.getCursos().isEmpty()) {
+            cursos = "No hay cursos registrados.\n";
+        }else {
+            for (Curso curso : contenedor.getCursos()) {
+            cursos += "- " + curso.getNombre() + "\n";
+            }
+        }
+        JLabel listaCursos = new JLabel(cursos);
+        panelDerecha.add(listaCursosLabel);
+        panelDerecha.add(listaCursos);
         panelDerecha.setLayout(new BoxLayout(panelDerecha, BoxLayout.Y_AXIS));
         panelDerecha.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 

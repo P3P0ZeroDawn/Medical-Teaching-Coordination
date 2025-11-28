@@ -11,7 +11,7 @@ import java.awt.GridBagConstraints;
 
 public class CursoEspecifico extends JPanel {
 
-    public CursoEspecifico(MainFrame frame, Curso curso, Usuario usuario, ArrayList<Usuario> usuarios, ArrayList<Curso> cursos) {
+    public CursoEspecifico(MainFrame frame, ContenedorEntidades contenedor) {
         // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
 

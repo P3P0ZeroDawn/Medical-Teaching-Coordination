@@ -1,8 +1,10 @@
 package com.medicalteachingcoordination.Visual;
 
-import com.medicalteachingcoordination.Administrativo.Administrativo;
+import com.medicalteachingcoordination.Administrativo.*;
 import com.medicalteachingcoordination.Curso.Curso;
+import com.medicalteachingcoordination.Curso.GestionarConstancias;
 import com.medicalteachingcoordination.Misc.Usuario;
+import com.medicalteachingcoordination.Misc.Asistencia;
 import com.medicalteachingcoordination.Misc.Contador;
 
 import javax.swing.*;
@@ -12,12 +14,10 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.util.ArrayList;
-import javax.swing.*;
 
 public class Menu extends JPanel {
 
-    public Menu(MainFrame frame, Usuario usuario, ArrayList<Usuario> usuarios, Contador contadorUsuarios,
-            ArrayList<Curso> cursos) {
+    public Menu(MainFrame frame, ContenedorEntidades contenedor) {
         // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
 
@@ -41,7 +41,7 @@ public class Menu extends JPanel {
         JLabel userLabel = new JLabel("Usuario: " + usuario.getNombre());
         userLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JLabel userType = new JLabel("Tipo de usuario: " + getUserType(usuario));
+        JLabel userType = new JLabel("Tipo de usuario: " + usuario.getClass().getSimpleName());
         userType.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         form.add(userLabel);
@@ -51,7 +51,7 @@ public class Menu extends JPanel {
         // Tamaño uniforme para los botones del panel izquierdo
         Dimension buttonSize = new Dimension(150, 30);
 
-        if (getUserType(usuario).equals("Administrativo")) {
+        if (usuario instanceof Administrativo) {
             JButton btnReporte = new JButton("Consultar reporte");
             btnReporte.setPreferredSize(buttonSize);
             btnReporte.setMaximumSize(buttonSize);
@@ -120,13 +120,5 @@ public class Menu extends JPanel {
         right.fill = GridBagConstraints.BOTH;
 
         add(panelDerecha, right);
-    }
-
-    public String getUserType(Usuario usuario) {
-        if (usuario instanceof Administrativo) {
-            return "Administrativo";
-        }
-        // Agregar más tipos de usuario según sea necesario
-        return "Desconocido";
     }
 }

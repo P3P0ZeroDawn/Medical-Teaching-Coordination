@@ -10,7 +10,7 @@ import com.medicalteachingcoordination.Curso.Curso;
 
 public class Login extends JPanel {
 
-    public Login(MainFrame frame, ArrayList<Curso> cursos, ArrayList<Usuario> usuarios) {
+    public Login(MainFrame frame, ContenedorEntidades contenedor) {
 
         // Centrar el formulario en la pantalla
         setLayout(new GridBagLayout());
@@ -37,12 +37,13 @@ public class Login extends JPanel {
         btn.addActionListener(e -> {
             Usuario usuario = autenticar(userField.getText(), passField.getPassword(), usuarios);
             if (usuario != null) {
+                contenedor.setUsuarioActual(usuario);
                 if (usuario instanceof Administrativo) {
-                    frame.mostrarVista("menu", usuario, usuarios, cursos);
+                    frame.mostrarVista("menu", contenedor);
                     userField.setText("");
                     passField.setText("");
                 } else {
-                    frame.mostrarVista("cursos", cursos, usuario, usuarios);
+                    frame.mostrarVista("cursos", contenedor);
                     userField.setText("");
                     passField.setText("");
                 }

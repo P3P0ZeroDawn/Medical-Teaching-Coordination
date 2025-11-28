@@ -19,7 +19,7 @@ public class CursoEspecifico extends JPanel {
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
         form.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel mainLabel = new JLabel(curso.getNombre());
+        JLabel mainLabel = new JLabel(contenedor.getCursoEspecifico().getNombre());
         mainLabel.setFont(mainLabel.getFont().deriveFont(30.0f));
         mainLabel.setPreferredSize(new Dimension(600, 40));
         mainLabel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
@@ -28,16 +28,14 @@ public class CursoEspecifico extends JPanel {
 
         // Alinear todos al centro
         mainLabel.setAlignmentX(CENTER_ALIGNMENT);
-        
 
         // Ensamblar UI con espacios
         form.add(Box.createVerticalStrut(30));
-        form.add(mainLabel);      
+        form.add(mainLabel);
         form.add(Box.createVerticalStrut(60));
-        
+
         Dimension buttonSize = new Dimension(150, 30);
-        
-        
+
         JButton btnAsistencia = new JButton("Registrar Asistencia");
         btnAsistencia.setPreferredSize(buttonSize);
         btnAsistencia.setMaximumSize(buttonSize);
@@ -54,7 +52,6 @@ public class CursoEspecifico extends JPanel {
         form.add(btnConstancia);
         form.add(Box.createVerticalStrut(10));
 
-        
         form.add(Box.createVerticalStrut(10));
 
         form.add(Box.createVerticalGlue());
@@ -65,12 +62,10 @@ public class CursoEspecifico extends JPanel {
         btnBack.setMinimumSize(buttonSize);
         btnBack.setAlignmentX(CENTER_ALIGNMENT);
         btnBack.addActionListener(e -> {
-            frame.mostrarVista("cursos", cursos, usuario, usuarios);
+            frame.mostrarVista("cursos");
         });
         form.add(btnBack);
         form.add(Box.createVerticalStrut(15));
-
-        
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;

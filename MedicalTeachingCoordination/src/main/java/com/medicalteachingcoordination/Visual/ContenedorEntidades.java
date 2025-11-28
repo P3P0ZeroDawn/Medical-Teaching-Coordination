@@ -16,6 +16,7 @@ public class ContenedorEntidades {
     private ArrayList<GestionarConstancias> constancias;
     private Contador contadorUsuarios;
     private Usuario usuarioActual;
+    private Curso cursoEspecifico;
 
     public ContenedorEntidades() {
         usuarios = new ArrayList<>();
@@ -24,6 +25,7 @@ public class ContenedorEntidades {
         constancias = new ArrayList<>();
         contadorUsuarios = new Contador();
         usuarioActual = null;
+        cursoEspecifico = null;
     }
 
     public ArrayList<Usuario> getUsuarios() {
@@ -50,7 +52,15 @@ public class ContenedorEntidades {
         return usuarioActual;
     }
 
+    public Curso getCursoEspecifico() {
+        return cursoEspecifico;
+    }
+
     public void setUsuarioActual(Usuario usuarioActual) {
         this.usuarioActual = usuarioActual;
+    }
+
+    public void setCursoEspecifico(Curso cursoEspecifico) {
+        this.cursoEspecifico = cursoEspecifico;
     }
 }

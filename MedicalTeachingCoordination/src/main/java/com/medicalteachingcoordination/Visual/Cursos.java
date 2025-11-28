@@ -19,47 +19,44 @@ public class Cursos extends JPanel {
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
         form.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel mainLabel = new JLabel("Bienvenido, " + usuario.getNombre());
+        JLabel mainLabel = new JLabel("Bienvenido, " + contenedor.getUsuarioActual().getNombre());
         mainLabel.setFont(mainLabel.getFont().deriveFont(30.0f));
         mainLabel.setPreferredSize(new Dimension(600, 40));
         mainLabel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         mainLabel.setMinimumSize(new Dimension(600, 40));
         mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        
-        
         // Alinear todos al centro
         mainLabel.setAlignmentX(CENTER_ALIGNMENT);
-        
 
         // Ensamblar UI con espacios
         form.add(Box.createVerticalStrut(30));
         form.add(mainLabel);
         form.add(Box.createVerticalStrut(8));
-        
+
         Dimension buttonSize = new Dimension(150, 30);
 
         ArrayList<Curso> userCourses = new ArrayList<>();
 
-        for (Curso curso: cursos) {
-            if(curso.getEstudiantes().contains(usuario)) {
+        for (Curso curso : contenedor.getCursos()) {
+            if (curso.getEstudiantes().contains(contenedor.getUsuarioActual())) {
                 userCourses.add(curso);
             }
         }
-        
+
         if (userCourses.isEmpty()) {
             JLabel noCoursesLabel = new JLabel("No estás inscrito en ningún curso.");
             noCoursesLabel.setFont(noCoursesLabel.getFont().deriveFont(15.0f));
             noCoursesLabel.setAlignmentX(CENTER_ALIGNMENT);
             form.add(noCoursesLabel);
             form.add(Box.createVerticalStrut(10));
-        }else {
+        } else {
             JLabel firstLabel = new JLabel("Tus cursos:");
             firstLabel.setFont(firstLabel.getFont().deriveFont(15.0f));
             firstLabel.setAlignmentX(CENTER_ALIGNMENT);
             form.add(firstLabel);
             form.add(Box.createVerticalStrut(20));
-            for (Curso curso: userCourses) {
+            for (Curso curso : userCourses) {
                 JButton btnCurso = new JButton(curso.getNombre());
                 btnCurso.setPreferredSize(buttonSize);
                 btnCurso.setMaximumSize(buttonSize);
@@ -68,11 +65,12 @@ public class Cursos extends JPanel {
                 form.add(btnCurso);
                 form.add(Box.createVerticalStrut(10));
                 btnCurso.addActionListener(e -> {
-                    frame.mostrarVista("cursoEspecifico", curso, usuario, usuarios, cursos);
+                    contenedor.setCursoEspecifico(curso);
+                    frame.mostrarVista("cursoEspecifico");
                 });
             }
         }
-        
+
         form.add(Box.createVerticalStrut(10));
 
         // Empuja el botón de logout hacia el borde inferior
@@ -85,12 +83,10 @@ public class Cursos extends JPanel {
         btnLogout.setAlignmentX(CENTER_ALIGNMENT);
         btnLogout.setAlignmentY(BOTTOM_ALIGNMENT);
         btnLogout.addActionListener(e -> {
-            frame.mostrarVista("login", usuarios);
+            frame.mostrarVista("login");
         });
         form.add(btnLogout);
         form.add(Box.createVerticalStrut(15));
-
-        
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;

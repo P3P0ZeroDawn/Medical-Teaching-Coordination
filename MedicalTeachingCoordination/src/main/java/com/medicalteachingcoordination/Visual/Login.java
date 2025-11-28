@@ -35,15 +35,15 @@ public class Login extends JPanel {
         btn.setAlignmentX(CENTER_ALIGNMENT);
 
         btn.addActionListener(e -> {
-            Usuario usuario = autenticar(userField.getText(), passField.getPassword(), usuarios);
+            Usuario usuario = autenticar(userField.getText(), passField.getPassword(), contenedor.getUsuarios());
             if (usuario != null) {
                 contenedor.setUsuarioActual(usuario);
                 if (usuario instanceof Administrativo) {
-                    frame.mostrarVista("menu", contenedor);
+                    frame.mostrarVista("menu");
                     userField.setText("");
                     passField.setText("");
                 } else {
-                    frame.mostrarVista("cursos", contenedor);
+                    frame.mostrarVista("cursos");
                     userField.setText("");
                     passField.setText("");
                 }

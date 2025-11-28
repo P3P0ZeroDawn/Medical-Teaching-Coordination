@@ -38,10 +38,10 @@ public class Menu extends JPanel {
         form.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Campos
-        JLabel userLabel = new JLabel("Usuario: " + usuario.getNombre());
+        JLabel userLabel = new JLabel("Usuario: " + contenedor.getUsuarioActual().getNombre());
         userLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JLabel userType = new JLabel("Tipo de usuario: " + usuario.getClass().getSimpleName());
+        JLabel userType = new JLabel("Tipo de usuario: " + contenedor.getUsuarioActual().getClass().getSimpleName());
         userType.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         form.add(userLabel);
@@ -51,7 +51,7 @@ public class Menu extends JPanel {
         // Tamaño uniforme para los botones del panel izquierdo
         Dimension buttonSize = new Dimension(150, 30);
 
-        if (usuario instanceof Administrativo) {
+        if (contenedor.getUsuarioActual() instanceof Administrativo) {
             JButton btnReporte = new JButton("Consultar reporte");
             btnReporte.setPreferredSize(buttonSize);
             btnReporte.setMaximumSize(buttonSize);
@@ -81,7 +81,7 @@ public class Menu extends JPanel {
         btnLogout.setMinimumSize(buttonSize);
         btnLogout.setAlignmentX(Component.LEFT_ALIGNMENT);
         btnLogout.addActionListener(e -> {
-            frame.mostrarVista("login", usuarios);
+            frame.mostrarVista("login");
         });
         form.add(btnLogout);
         form.add(Box.createVerticalStrut(15));

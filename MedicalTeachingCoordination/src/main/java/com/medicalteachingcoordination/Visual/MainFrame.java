@@ -2,20 +2,15 @@ package com.medicalteachingcoordination.Visual;
 
 import javax.swing.*;
 
-import com.medicalteachingcoordination.Curso.Curso;
-import com.medicalteachingcoordination.Curso.GestionarConstancias;
-import com.medicalteachingcoordination.Misc.Asistencia;
-import com.medicalteachingcoordination.Misc.Contador;
-import com.medicalteachingcoordination.Misc.Usuario;
-
 import java.awt.*;
-import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
 
     private JPanel cards;
+    private ContenedorEntidades contenedor;
 
     public MainFrame(ContenedorEntidades contenedor) {
+        this.contenedor = contenedor;
 
         setTitle("Sistema de Coordinación de Enseñanza Médica");
         setSize(800, 600);
@@ -28,16 +23,36 @@ public class MainFrame extends JFrame {
 
         // agregar vistas
         cards.add(new Login(this, contenedor), "login");
-        cards.add(new Menu(this, contenedor), "menu");
-        cards.add(new Cursos(this, contenedor), "cursos");
-        cards.add(new CursoEspecifico(this, contenedor), "cursoEspecifico");
 
         add(cards);
     }
 
     // cualquier vista
     public void mostrarVista(String nombre) {
+        if (!existePanel(nombre)) {
+            switch (nombre) {
+                case "menu":
+                    cards.add(new Menu(this, contenedor), "menu");
+                    break;
+                case "cursos":
+                    cards.add(new Cursos(this, contenedor), "cursos");
+                    break;
+                case "cursoEspecifico":
+                    cards.add(new CursoEspecifico(this, contenedor), "cursoEspecifico");
+                    break;
+            }
+        }
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
+    }
+
+    // Checa si existe el panel
+    private boolean existePanel(String nombre) {
+        for (Component c : cards.getComponents()) {
+            if (nombre.equals(c.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

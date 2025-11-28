@@ -2,6 +2,7 @@ package com.medicalteachingcoordination.Visual;
 
 import com.medicalteachingcoordination.Administrativo.*;
 import com.medicalteachingcoordination.Curso.Curso;
+import com.medicalteachingcoordination.Misc.Usuario;
 
 import javax.swing.*;
 
@@ -9,6 +10,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 
 public class Menu extends JPanel {
 
@@ -35,9 +37,11 @@ public class Menu extends JPanel {
         // Campos
         JLabel userLabel = new JLabel("Usuario: " + contenedor.getUsuarioActual().getNombre());
         userLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        userLabel.setFont(getFont().deriveFont(15.0f));
 
         JLabel userType = new JLabel("Tipo de usuario: " + contenedor.getUsuarioActual().getClass().getSimpleName());
         userType.setAlignmentX(Component.LEFT_ALIGNMENT);
+        userType.setFont(getFont().deriveFont(15.0f));
 
         form.add(userLabel);
         form.add(userType);
@@ -63,6 +67,9 @@ public class Menu extends JPanel {
             btnAgregarCurso.setMaximumSize(buttonSize);
             btnAgregarCurso.setMinimumSize(buttonSize);
             btnAgregarCurso.setAlignmentX(Component.LEFT_ALIGNMENT);
+            btnAgregarCurso.addActionListener(e -> {
+                frame.mostrarVista("agregarCurso", contenedor);
+            });
             form.add(btnAgregarCurso);
             form.add(Box.createVerticalStrut(15));
         }
@@ -100,8 +107,15 @@ public class Menu extends JPanel {
         add(separator, sep);
 
         // ======= Panel derecha =======
-        JPanel panelDerecha = new JPanel();
+        JPanel panelDerecha = new JPanel(new GridLayout(1, 2, 20, 0));
+        panelDerecha.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // SUBPANEL IZQUIERDO (Cursos)
+        JPanel panelCursos = new JPanel();
+        panelCursos.setLayout(new BoxLayout(panelCursos, BoxLayout.Y_AXIS));
+
         JLabel listaCursosLabel = new JLabel("Lista de Cursos");
+        listaCursosLabel.setFont(getFont().deriveFont(30.0f));
         String cursos = "";
         if (contenedor.getCursos().isEmpty()) {
             cursos = "No hay cursos registrados.\n";
@@ -110,10 +124,55 @@ public class Menu extends JPanel {
             cursos += "- " + curso.getNombre() + "\n";
             }
         }
-        JLabel listaCursos = new JLabel(cursos);
-        panelDerecha.add(listaCursosLabel);
-        panelDerecha.add(listaCursos);
-        panelDerecha.setLayout(new BoxLayout(panelDerecha, BoxLayout.Y_AXIS));
+        JTextArea listaCursos = new JTextArea(cursos);
+        listaCursos.setFont(getFont().deriveFont(15.0f));
+        listaCursos.setEditable(false);
+        listaCursos.setOpaque(false);    // Para fondo transparente
+        listaCursos.setFocusable(false);
+        listaCursos.setBorder(null);
+        listaCursos.setPreferredSize(new Dimension(200, 500));
+        listaCursos.setMaximumSize(new Dimension(200, 500));
+        listaCursos.setMinimumSize(new Dimension(200, 500));
+        listaCursos.setAlignmentX(LEFT_ALIGNMENT);
+
+        panelCursos.add(listaCursosLabel);
+        panelCursos.add(listaCursos);
+
+
+        // SUBPANEL DERECHO (Usuarios)
+        JPanel panelUsuarios = new JPanel();
+        panelUsuarios.setLayout(new BoxLayout(panelUsuarios, BoxLayout.Y_AXIS));
+
+        JLabel listaUsuariosLabel = new JLabel("Lista de Usuarios");
+        listaUsuariosLabel.setFont(getFont().deriveFont(30.0f));
+        String usuarios = "";
+        if (contenedor.getUsuarios().isEmpty()) {
+            usuarios = "No hay usuarios registrados.\n";
+        }else {
+            for (Usuario usuario : contenedor.getUsuarios()) {
+            usuarios += "- " + usuario.getNombre() + " (" + usuario.getClass().getSimpleName() + ")\n";
+            }
+        }
+        JTextArea listaUsuarios = new JTextArea(usuarios);
+        listaUsuarios.setFont(getFont().deriveFont(15.0f));
+        listaUsuarios.setEditable(false);
+        listaUsuarios.setOpaque(false);    // Para fondo transparente
+        listaUsuarios.setFocusable(false);
+        listaUsuarios.setBorder(null);
+        listaUsuarios.setPreferredSize(new Dimension(400, 500));
+        listaUsuarios.setMaximumSize(new Dimension(400, 500));
+        listaUsuarios.setMinimumSize(new Dimension(400, 500));
+        listaUsuarios.setAlignmentX(LEFT_ALIGNMENT);
+
+        panelUsuarios.add(listaUsuariosLabel);
+        panelUsuarios.add(listaUsuarios);
+
+
+        panelDerecha.add(panelCursos);
+        panelDerecha.add(Box.createHorizontalStrut(20));
+        panelDerecha.add(panelUsuarios);
+        
+        panelDerecha.setLayout(new BoxLayout(panelDerecha, BoxLayout.X_AXIS));
         panelDerecha.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Config de GridBag para la derecha

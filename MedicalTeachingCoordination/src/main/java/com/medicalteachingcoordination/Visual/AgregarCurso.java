@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import com.medicalteachingcoordination.Curso.Curso;
 
 public class AgregarCurso extends JPanel {
 
@@ -27,24 +26,31 @@ public class AgregarCurso extends JPanel {
         JLabel cursoNameLabel = new JLabel("Nombre del Curso:");
         cursoNameLabel.setAlignmentX(CENTER_ALIGNMENT);
         JTextField cursoNameField = new JTextField();
-        cursoNameField.setMaximumSize(new Dimension(250, 50));
+        cursoNameField.setMaximumSize(new Dimension(250, 30));
+        cursoNameField.setPreferredSize(new Dimension(250, 30));
+        cursoNameField.setMinimumSize(new Dimension(250, 30));
 
         JLabel cursoClaveLabel = new JLabel("Clave para validacion de constancias:");
         cursoClaveLabel.setAlignmentX(CENTER_ALIGNMENT);
         JTextField cursoClaveField = new JTextField();
-        cursoClaveField.setMaximumSize(new Dimension(250, 50));
+        cursoClaveField.setMaximumSize(new Dimension(250, 30));
+        cursoClaveField.setPreferredSize(new Dimension(250, 30));
+        cursoClaveField.setMinimumSize(new Dimension(250, 30));
 
         JButton btn = new JButton("Registrar Curso");
         btn.setAlignmentX(CENTER_ALIGNMENT);
 
         btn.addActionListener(e -> {
-            if (!existeCurso(cursoNameField.getText(), contenedor)) {
-                Curso nuevoCurso = new Curso(cursoNameField.getText(), cursoClaveField.getText());
-                contenedor.getCursos().add(nuevoCurso);
+            int agregado = new com.medicalteachingcoordination.Administrativo.AgregarCurso().agregarCurso(cursoNameField.getText(), cursoClaveField.getText(), contenedor.getCursos());
+            if (agregado == 3) {
                 JOptionPane.showMessageDialog(frame, "Curso registrado exitosamente");
                 cursoNameField.setText("");
                 cursoClaveField.setText("");
-            } else {
+            } else if(agregado == 1){
+                JOptionPane.showMessageDialog(frame, "El nombre del curso no puede estar vacio");
+            } else if(agregado == 2){
+                JOptionPane.showMessageDialog(frame, "La clave no puede estar vacia");
+            } else if(agregado == 4){
                 JOptionPane.showMessageDialog(frame, "Ya existe un curso con ese nombre");
             }
         });
@@ -90,14 +96,5 @@ public class AgregarCurso extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.CENTER;
         add(form, gbc);
-    }
-
-    private boolean existeCurso(String nombre, ContenedorEntidades contenedor) {
-        for (Curso curso : contenedor.getCursos()) {
-            if (curso.getNombre().equalsIgnoreCase(nombre)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

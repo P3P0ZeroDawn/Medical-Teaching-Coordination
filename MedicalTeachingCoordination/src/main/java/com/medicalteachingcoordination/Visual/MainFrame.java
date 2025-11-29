@@ -46,6 +46,10 @@ public class MainFrame extends JFrame {
             case "agregarCurso":
                 cards.add(new AgregarCurso(this, contenedor), "agregarCurso");
                 break;
+
+            case "agregarUsuario":
+                cards.add(new AgregarUsuario(this, contenedor), "agregarUsuario");
+                break;
         }
         
         CardLayout cl = (CardLayout) cards.getLayout();

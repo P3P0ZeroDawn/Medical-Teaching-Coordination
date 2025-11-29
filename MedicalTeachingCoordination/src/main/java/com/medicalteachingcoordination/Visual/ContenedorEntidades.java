@@ -63,4 +63,22 @@ public class ContenedorEntidades {
     public void setCursoEspecifico(Curso cursoEspecifico) {
         this.cursoEspecifico = cursoEspecifico;
     }
+
+    public Curso getCursoPorNombre(String nombreCurso) {
+        for (Curso curso : cursos) {
+            if (curso.getNombre().equals(nombreCurso)) {
+                return curso;
+            }
+        }
+        return null; // Retorna null si no se encuentra el curso
+    }
+
+    public Usuario getUsuarioPorNombre(String nombreUsuario) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNombre().equals(nombreUsuario)) {
+                return usuario;
+            }
+        }
+        return null; // Retorna null si no se encuentra el usuario
+    }
 }

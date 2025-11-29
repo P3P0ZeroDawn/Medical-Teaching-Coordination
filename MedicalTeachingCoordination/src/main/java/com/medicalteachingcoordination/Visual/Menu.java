@@ -83,6 +83,17 @@ public class Menu extends JPanel {
             });
             form.add(btnAgregarUsuario);
             form.add(Box.createVerticalStrut(15));
+
+            JButton btnAgregarEstudianteACurso = new JButton("Agregar estudiante a curso");
+            btnAgregarEstudianteACurso.setPreferredSize(buttonSize);
+            btnAgregarEstudianteACurso.setMaximumSize(buttonSize);
+            btnAgregarEstudianteACurso.setMinimumSize(buttonSize);
+            btnAgregarEstudianteACurso.setAlignmentX(Component.LEFT_ALIGNMENT);
+            btnAgregarEstudianteACurso.addActionListener(e -> {
+                frame.mostrarVista("agregarEstudianteACurso", contenedor);
+            });
+            form.add(btnAgregarEstudianteACurso);
+            form.add(Box.createVerticalStrut(15));
         }
 
         // Empuja lo que viene después (el botón de logout) hacia el fondo

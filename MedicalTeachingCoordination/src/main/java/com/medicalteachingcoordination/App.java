@@ -28,16 +28,16 @@ public class App {
 
         contenedor.getUsuarios().add(admin1);
 
-        Estudiante estudiante1 = new Estudiante("Estudiante Por Defecto", "estudiante1",
-                new char[] { 'p', 'a', 's', 's', '1' }, new GenerarCodigo(contenedor.getContadorUsuarios()).generarCodigo("estudiante"));
+        // Estudiante estudiante1 = new Estudiante("Estudiante Por Defecto", "estudiante1",
+        //         new char[] { 'p', 'a', 's', 's', '1' }, new GenerarCodigo(contenedor.getContadorUsuarios()).generarCodigo("estudiante"));
 
-        contenedor.getUsuarios().add(estudiante1);
+        // contenedor.getUsuarios().add(estudiante1);
 
-        Curso curso1 = new Curso("Anatomía Humana", "AH-2025/11-SGEM");
+        // Curso curso1 = new Curso("Anatomía Humana", "AH-2025/11-SGEM");
 
-        contenedor.getCursos().add(curso1);
+        // contenedor.getCursos().add(curso1);
 
-        curso1.getEstudiantes().add(estudiante1);
+        // curso1.getEstudiantes().add(estudiante1);
 
         SwingUtilities.invokeLater(() -> new MainFrame(contenedor).setVisible(true));
     }

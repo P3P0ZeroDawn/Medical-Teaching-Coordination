@@ -3,10 +3,11 @@ package com.medicalteachingcoordination.Administrativo;
 import java.util.ArrayList;
 
 import com.medicalteachingcoordination.Curso.Curso;
+import com.medicalteachingcoordination.Curso.GestionarConstancias;
 
 public class AgregarCurso {
 
-    public int agregarCurso(String nombreCurso, String clave, ArrayList<Curso> cursos) {
+    public int agregarCurso(String nombreCurso, String clave, ArrayList<Curso> cursos, ArrayList<GestionarConstancias> constanciasPorCurso) {
         if(nombreCurso == null || nombreCurso.trim().isEmpty()){
             return 1;
         }
@@ -14,7 +15,9 @@ public class AgregarCurso {
             return 2;
         }
         if(!existeCurso(nombreCurso, cursos)){
-            cursos.add(new Curso(nombreCurso, clave));
+            Curso nuevoCurso = new Curso(nombreCurso, clave);
+            cursos.add(nuevoCurso);
+            constanciasPorCurso.add(new GestionarConstancias(nuevoCurso));
             return 3;
         }
         return 4;

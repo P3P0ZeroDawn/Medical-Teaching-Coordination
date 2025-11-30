@@ -21,15 +21,23 @@ public class ConsultarReporte {
             return "";
         String infoCursos = "";
         for (GestionarConstancias gc : gestionarConstancias) {
-            infoCursos = infoCursos + "\n\n" + gc.getCurso() + "\n" + "Constancias validadas: " + "\n";
-            for (Constancia constancia : gc.getConstanciasValidadas()) {
-                infoCursos = infoCursos + "Clave: " + constancia.getClave() + "   Estudiante: "
-                        + constancia.getEstudiante().getNombre() + "\n";
+            infoCursos = infoCursos + "\n\n" + gc.getCurso().getNombre() + "\n" + "Constancias validadas: " + "\n";
+            if( gc.getConstanciasValidadas() == null || gc.getConstanciasValidadas().size() == 0){
+                infoCursos = infoCursos + "  Ninguna \n";
+            } else {
+                for (Constancia constancia : gc.getConstanciasValidadas()) {
+                    infoCursos = infoCursos + "Clave: " + constancia.getClave() + "   Estudiante: "
+                            + constancia.getEstudiante().getNombre() + "\n";
+                }
             }
             infoCursos = infoCursos + "Constancias sin validar: \n";
-            for (Constancia constancia : gc.getConstanciasPorValidar()) {
-                infoCursos = infoCursos + "Clave: " + constancia.getClave() + "   Estudiante: "
-                        + constancia.getEstudiante().getNombre() + "\n";
+            if( gc.getConstanciasPorValidar() == null || gc.getConstanciasPorValidar().size() == 0){
+                infoCursos = infoCursos + "  Ninguna \n";
+            } else {
+                for (Constancia constancia : gc.getConstanciasPorValidar()) {
+                    infoCursos = infoCursos + "Clave: " + constancia.getClave() + "   Estudiante: "
+                            + constancia.getEstudiante().getNombre() + "\n";
+                }
             }
         }
         return infoCursos;
@@ -50,17 +58,22 @@ public class ConsultarReporte {
                 cursos.add(asistencia.getInformacion());
         }
 
-        infoAsistencias = infoAsistencias + "Asistencias por curso \n\n";
+        infoAsistencias = infoAsistencias + "Asistencias por curso \n";
 
         for (String c : cursos) {
-            infoAsistencias = infoAsistencias + "\n\n" + c + "\n";
+            infoAsistencias = infoAsistencias + "\n" + c + "\n";
             for (Asistencia asistenciaCurso : asistencias) {
                 if (c == asistenciaCurso.getInformacion()) {
-                    infoAsistencias = infoAsistencias + asistenciaCurso.getUsuario() + "  " + asistenciaCurso.getFecha()
+                    infoAsistencias = infoAsistencias + asistenciaCurso.getUsuario().getNombre() + "  " + asistenciaCurso.getFecha()
                             + "\n";
                 }
             }
         }
         return infoAsistencias;
+    }
+
+    public Reporte generarReporte(ArrayList<GestionarConstancias> constanciasPorCurso, ArrayList<Asistencia> asistencias){
+        Reporte reporte = new Reporte(constanciasPorCurso, asistencias);
+        return reporte;
     }
 }

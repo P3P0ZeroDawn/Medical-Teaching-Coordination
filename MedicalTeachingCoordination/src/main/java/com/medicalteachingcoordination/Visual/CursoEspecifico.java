@@ -2,12 +2,12 @@ package com.medicalteachingcoordination.Visual;
 
 import javax.swing.*;
 
-import com.medicalteachingcoordination.Curso.Curso;
-import com.medicalteachingcoordination.Misc.Usuario;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
-import java.util.ArrayList;
 import java.awt.GridBagConstraints;
+
+import com.medicalteachingcoordination.Estudiante.Estudiante;
+import com.medicalteachingcoordination.Misc.Asistencia;
 
 public class CursoEspecifico extends JPanel {
 
@@ -41,14 +41,24 @@ public class CursoEspecifico extends JPanel {
         btnAsistencia.setMaximumSize(buttonSize);
         btnAsistencia.setMinimumSize(buttonSize);
         btnAsistencia.setAlignmentX(CENTER_ALIGNMENT);
+        btnAsistencia.addActionListener(e -> {
+            Estudiante estudiante = (Estudiante) contenedor.getUsuarioActual();
+            Asistencia asistencia = estudiante.registrarAsistencia(contenedor.getCursoEspecifico().getNombre());
+            contenedor.getAsistencias().add(asistencia);
+            JOptionPane.showMessageDialog(this, "Asistencia registrada correctamente.");
+        });
         form.add(btnAsistencia);
         form.add(Box.createVerticalStrut(10));
+        
 
         JButton btnConstancia = new JButton("Subir Constancia");
         btnConstancia.setPreferredSize(buttonSize);
         btnConstancia.setMaximumSize(buttonSize);
         btnConstancia.setMinimumSize(buttonSize);
         btnConstancia.setAlignmentX(CENTER_ALIGNMENT);
+        btnConstancia.addActionListener(e -> {
+            frame.mostrarVista("subirConstancia", contenedor);
+        });
         form.add(btnConstancia);
         form.add(Box.createVerticalStrut(10));
 

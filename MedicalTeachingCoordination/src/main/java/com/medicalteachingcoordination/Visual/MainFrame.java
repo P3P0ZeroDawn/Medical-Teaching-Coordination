@@ -54,6 +54,18 @@ public class MainFrame extends JFrame {
             case "agregarEstudianteACurso":
                 cards.add(new AgregarEstudianteACurso(this, contenedor), "agregarEstudianteACurso");
                 break;
+
+            case "consultarReporte":
+                cards.add(new ConsultarReporte(this, contenedor), "consultarReporte");
+                break;
+
+            case "subirConstancia":
+                cards.add(new SubirConstancia(this, contenedor), "subirConstancia");
+                break;
+
+            case "validarConstancias":
+                cards.add(new ValidarConstanciasPanel(this, contenedor), "validarConstancias");
+                break;
         }
         
         CardLayout cl = (CardLayout) cards.getLayout();

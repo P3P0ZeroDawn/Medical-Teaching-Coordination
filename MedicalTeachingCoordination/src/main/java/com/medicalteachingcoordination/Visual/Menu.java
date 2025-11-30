@@ -48,7 +48,7 @@ public class Menu extends JPanel {
         form.add(Box.createVerticalStrut(20));
 
         // Tamaño uniforme para los botones del panel izquierdo
-        Dimension buttonSize = new Dimension(150, 30);
+        Dimension buttonSize = new Dimension(200, 30);
 
         if (contenedor.getUsuarioActual() instanceof Administrativo) {
             JButton btnReporte = new JButton("Consultar reporte");
@@ -57,7 +57,7 @@ public class Menu extends JPanel {
             btnReporte.setMinimumSize(buttonSize);
             btnReporte.setAlignmentX(Component.LEFT_ALIGNMENT);
             btnReporte.addActionListener(e -> {
-                // Acción para consultar reporte
+                frame.mostrarVista("consultarReporte", contenedor);
             });
             form.add(btnReporte);
             form.add(Box.createVerticalStrut(15));
@@ -93,6 +93,17 @@ public class Menu extends JPanel {
                 frame.mostrarVista("agregarEstudianteACurso", contenedor);
             });
             form.add(btnAgregarEstudianteACurso);
+            form.add(Box.createVerticalStrut(15));
+
+            JButton btnValidarConstancias = new JButton("Validar Constancias");
+            btnValidarConstancias.setPreferredSize(buttonSize);
+            btnValidarConstancias.setMaximumSize(buttonSize);
+            btnValidarConstancias.setMinimumSize(buttonSize);
+            btnValidarConstancias.setAlignmentX(Component.LEFT_ALIGNMENT);
+            btnValidarConstancias.addActionListener(e -> {
+                frame.mostrarVista("validarConstancias", contenedor);
+            });
+            form.add(btnValidarConstancias);
             form.add(Box.createVerticalStrut(15));
         }
 

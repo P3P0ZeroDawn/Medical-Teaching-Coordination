@@ -19,7 +19,8 @@ public class Asistencia {
     /**
      * Constructor de la clase Asistencia.
      * 
-     * @param usuario objeto usuario que registra la asistencia.
+     * @param usuario     objeto usuario que registra la asistencia.
+     * @param informacion información adicional de la asistencia.
      */
     public Asistencia(Usuario usuario, String informacion) {
         this.usuario = usuario;
@@ -45,6 +46,11 @@ public class Asistencia {
         return this.fecha;
     }
 
+    /**
+     * Metodo para obtener la informacion de la Asistencia.
+     * 
+     * @return informacion adicional.
+     */
     public String getInformacion() {
         return informacion;
     }

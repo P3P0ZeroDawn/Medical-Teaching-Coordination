@@ -42,32 +42,26 @@ public class MainFrame extends JFrame {
             case "cursoEspecifico":
                 cards.add(new CursoEspecifico(this, contenedor), "cursoEspecifico");
                 break;
-
             case "agregarCurso":
                 cards.add(new AgregarCurso(this, contenedor), "agregarCurso");
                 break;
-
             case "agregarUsuario":
                 cards.add(new AgregarUsuario(this, contenedor), "agregarUsuario");
                 break;
-
             case "agregarEstudianteACurso":
                 cards.add(new AgregarEstudianteACurso(this, contenedor), "agregarEstudianteACurso");
                 break;
-
             case "consultarReporte":
                 cards.add(new ConsultarReporte(this, contenedor), "consultarReporte");
                 break;
-
             case "subirConstancia":
                 cards.add(new SubirConstancia(this, contenedor), "subirConstancia");
                 break;
-
             case "validarConstancias":
                 cards.add(new ValidarConstanciasPanel(this, contenedor), "validarConstancias");
                 break;
         }
-        
+
         CardLayout cl = (CardLayout) cards.getLayout();
         cl.show(cards, nombre);
 

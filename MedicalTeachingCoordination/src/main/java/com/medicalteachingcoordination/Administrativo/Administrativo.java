@@ -21,7 +21,7 @@ public class Administrativo extends Usuario implements RegistraAsistencia {
      * @param nombre     Nombre completo del usuario.
      * @param usuario    Nombre de usuario para iniciar sesión.
      * @param contrasena Contraseña del usuario.
-     * @param contador   Contador para generar la clave del Administrativo
+     * @param clave      Clave generada automaticamente
      */
     public Administrativo(String nombre, String usuario, char[] contrasena, String clave) {
         super(nombre, usuario, contrasena, "administrativo");
@@ -39,7 +39,7 @@ public class Administrativo extends Usuario implements RegistraAsistencia {
 
     /**
      * Metodo para instanciar un objeto tipo Asistencia.
-     * 
+     * @param info Informacion asociada
      * @return Objeto de tipo Asistencia.
      */
     public Asistencia registrarAsistencia(String info) {

@@ -9,7 +9,7 @@ package com.medicalteachingcoordination.Misc;
 public interface RegistraAsistencia {
     /**
      * Metodo para registrar asistencia.
-     * 
+     * @param info informacion asociada
      * @return un objeto de tipo Asistencia.
      */
     public abstract Asistencia registrarAsistencia(String info);
